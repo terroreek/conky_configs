@@ -35,8 +35,8 @@ own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 alignment top_right
 gap_x 25
 gap_y 40
-minimum_size 182 800
-maximum_width 182
+minimum_size 182 850
+maximum_width 190
 
 default_bar_size 60 8
 
@@ -57,7 +57,7 @@ ${font Liberation Sans:style=Bold:size=8}SYSTEM $stippled_hr${font}
 ##############
 # - SYSTEM - #
 ##############
-${color0}${voffset 8}${offset 4}${font ConkyColorsLogos:size=9}d${font}${color}${voffset -16}
+${color0}${voffset 8}${offset 4}${font ConkyColorsLogos:size=9}d${font}${color}${voffset -18}
 ${color0}${font ConkyColors:size=16}b${font}${color}
 ${goto 32}${voffset -23}Kernel: ${alignr}${color2}${kernel}${color}
 ${goto 32}Uptime: ${alignr}${color2}${uptime}${color}
@@ -73,37 +73,31 @@ ${goto 32}CPU8: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu8}%${
 # |--MEM
 ${voffset 2}${color0}${font ConkyColors:size=15}g${font}${color}${goto 32}${voffset -7}RAM: ${font Liberation Sans:style=Bold:size=8}${color1}$memperc%${color}${font}
 ${offset 1}${color0}${membar 4,17}${color}${goto 32}F: ${font Liberation Sans:style=Bold:size=8}${color2}${memeasyfree}${color}${font} U: ${font Liberation Sans:style=Bold:size=8}${color2}${mem}${color}${font}
-${voffset 4}${color0}${font ConkyColors:size=16}e${font}${color}${voffset -10}${goto 32}CPU: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp1: | cut -c 16-19 | sed -n -e 2p}°C${color}${font}
-${voffset 0}${goto 32}VReg: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp2: | cut -c 16-19 | sed -n -e 2p}°C${color}${font}
-${voffset 0}${goto 32}Mobo: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp3: | cut -c 16-19 }°C${color}${font}
-#############
-# - CLOCK - #
-#############
-${voffset 10}${font Liberation Sans:style=Bold:size=8}DATE $stippled_hr${font}
-${voffset -2}${alignc 38}${color2}${font Liberation Sans:style=Bold:size=30}${time %H:%M}${font}${color}
-${voffset 6}${alignc}${time %d %B %Y}${voffset -6}
-################
-# - CALENDAR - #
-################
-${voffset 2}${color0}${font ConkyColors:size=15}n${font}${voffset -9}${offset 1}${font Liberation Sans:style=Bold:size=7}${offset -17}${voffset 4}${time %d}${font}${color}${voffset -1}${font Liberation Mono:size=7}${execpi 300 DJS=`date +%_d`; ncal -h -S -b|sed '2,8!d'| sed '/./!d' | sed 's/^/${goto 42} /'| sed 's/$/ /' | sed 's/^/ /' | sed /" $DJS "/s/" $DJS "/" "'${font Arial:style=Bold:size=8}${voffset -2}${offset -4}${color1} '"$DJS"'${color}${font Liberation Mono:size=7}'" "/}${voffset -1}
+${voffset 4}${color0}${font ConkyColors:size=16}e${font}${color}${voffset -10}${goto 32}CPU: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep "Package id 0:" | cut -c 17-20 }°C${color}${font}
+${voffset 0}${goto 32}VReg: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp1: | cut -c 16-19 }°C${color}${font}
+${voffset 0}${goto 32}Mobo: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp2: | cut -c 16-19 }°C${color}${font}
 ##############
 # - NVIDIA - #
 ##############
 ${voffset 4}${font Liberation Sans:style=Bold:size=8}NVIDIA $stippled_hr${font}
-${color0}${voffset 2}${font ConkyColorsLogos:size=16}n${font}${color}${goto 32}${voffset -8}GPU Temp:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q GPUCoreTemp | grep Attribute | cut -d ' ' -f 6 | cut -c 1-2 | head -1}${font}°C${color}
-${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q GPU2DClockFreqs -t | head -1}${font}MHz${color}
-${goto 32}Video RAM:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q VideoRam -t | head -1}${font}KiB${color}
-${goto 32}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q NvidiaDriverVersion -t | head -1}${font}${color}
+${color0}${voffset 2}${font ConkyColorsLogos:size=16}n${font}${color}
+${goto 32}${voffset -22}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q NvidiaDriverVersion -t | head -1}${font}${color}
+${goto 32}GPU Temp:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia temp}${font}°C${color}
+${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia gpufreq}${font}MHz${color}
+${goto 32}Mem Clock:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia memfreq}${font}MHz${color}
+${goto 32}Mem Usage:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-smi --query-gpu=memory.used --format=csv,noheader} / ${exec nvidia-smi --query-gpu=memory.total --format=csv,noheader}MiB${font}${color}
+${goto 32}GPU Usage:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia gpuutil}%${font}${color}
+${goto 32} ${color2}${execgraph "nvidia-smi '--format=csv,noheader,nounits' '--query-gpu=utilization.gpu'" }${color}
 ##########
 # - HD - #
 ##########
 ${voffset 4}${font Liberation Sans:style=Bold:size=8}HD $stippled_hr${font}
 ${voffset 1}${alignr}                   Used/Size    % Free
 ${voffset 6}${color0}${font ConkyColors:size=18}h${font}${color} ${voffset -13}Root:${alignr}$color ${color1}${fs_used /}/${fs_size /} ${color1}${fs_free_perc /}%${color}
-${voffset -2}${goto 32}Temp:${alignr}$color ${color1}${execi 30 nc localhost 7634 | cut -c 28-29}°C${color}
+${voffset -2}${goto 32}Temp:${alignr}$color ${color1}${execi 30 nc localhost 7634 | cut -c 56-57}°C${color}
 ${voffset 1}${fs_bar 12,175 /}
 ${voffset 10}${color0}${font ConkyColors:size=18}h${font}${color} ${voffset -13}Home:${alignr}$color ${color1}${fs_used /home}/${fs_size /home} ${fs_free_perc /home}%${color}
-${voffset -2}${goto 32}Temp:${alignr}$color ${color1}${execi 30 nc localhost 7634 | cut -c 65-66}°C${color}
+${voffset -2}${goto 32}Temp:${alignr}$color ${color1}${execi 30 nc localhost 7634 | cut -c 95-96}°C${color}
 ${voffset 1}${fs_bar 12,175 /home}
 ###############
 # - NETWORK - #
@@ -123,15 +117,16 @@ ${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${vof
 ${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup eth0}${color}${font}
 ${voffset 4}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed eth0}${color}${font} ${alignr}${color2}${downspeedgraph eth0 8,60 C22F2F A40000}${color}
 ${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown eth0}${color}${font}
-${voffset 2}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr eth0}${color}
-${voffset -1}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr eth0}${color}
+${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
 # |--ENP4S0
 ${else}${if_up enp4s0}
-${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed enp4s0}${color}${font} ${alignr}${color2}${upspeedgraph enp4s0 8,60 C22F2F A40000}${color}
+${voffset -12}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed enp4s0}${color}${font} ${alignr}${color2}${upspeedgraph enp4s0 8,60 C22F2F A40000}${color}
 ${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup enp4s0}${color}${font}
 ${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed enp4s0}${color}${font} ${alignr}${color2}${downspeedgraph enp4s0 8,60 C22F2F A40000}${color}
 ${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown enp4s0}${color}${font}
-${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr enp4s0}${color}${voffset -1}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr enp4s0}${color}
+${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
 # |--PPP0
 ${else}${if_up ppp0}
 ${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed ppp0}${color}${font} ${alignr}${color2}${upspeedgraph ppp0 8,60 C22F2F A40000}${color}
