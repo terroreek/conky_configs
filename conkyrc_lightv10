@@ -1,0 +1,141 @@
+conky.config = {
+--#####################
+-- Conky settings     #
+--#####################
+	update_interval = 1,
+	total_run_times = 0,
+	net_avg_samples = 1,
+	cpu_avg_samples = 1,
+	if_up_strictness = 'link',
+
+	imlib_cache_size = 0,
+	double_buffer = true,
+	no_buffers = true,
+
+	format_human_readable = true,
+
+--####################
+-- - Text settings - #
+--####################
+	use_xft = true,
+	font = 'Liberation Sans:size=8',
+	override_utf8_locale = true,
+	text_buffer_size = 2048,
+
+--############################
+-- - Window specifications - #
+--############################
+	own_window_class = 'Conky',
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 200,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	alignment = 'top_right',
+	gap_x = 25,
+	gap_y = 40,
+	minimum_width = 182, minimum_height = 850,
+	maximum_width = 190,
+
+	default_bar_width = 60, default_bar_height = 8,
+
+--########################
+-- - Graphics settings - #
+--########################
+	draw_shades = false,
+
+	default_color = '#585858',
+
+	color0 = '#444444',
+	color1 = '#C22F2F',
+	color2 = '#444444',
+	color3 = '#A40000',
+
+};
+
+conky.text = [[
+${font Liberation Sans:style=Bold:size=8}SYSTEM $stippled_hr${font}
+##############
+# - SYSTEM - #
+##############
+${color0}${voffset 8}${offset 4}${font ConkyColorsLogos:size=9}d${font}${color}${voffset -18}
+${color0}${font ConkyColors:size=16}b${font}${color}
+${goto 32}${voffset -23}Kernel: ${alignr}${color2}${kernel}${color}
+${goto 32}Uptime: ${alignr}${color2}${uptime}${color}
+# |--CPU
+${voffset 4}${color0}${font ConkyColors:size=16}c${font}${offset -20}${voffset 6}${cpubar cpu0 4,17}${color}${voffset -16}${goto 32}CPU1: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu1}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 0' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu1 8,50 C22F2F A40000}${color}
+${goto 32}CPU2: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu2}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 1' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu2 8,50 C22F2F A40000}${color}
+${goto 32}CPU3: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu3}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 2' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu3 8,50 C22F2F A40000}${color}
+${goto 32}CPU4: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu4}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 3' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu4 8,50 C22F2F A40000}${color}
+${goto 32}CPU5: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu5}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 0' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu5 8,50 C22F2F A40000}${color}
+${goto 32}CPU6: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu6}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 1' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu6 8,50 C22F2F A40000}${color}
+${goto 32}CPU7: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu7}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 2' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu7 8,50 C22F2F A40000}${color}
+${goto 32}CPU8: ${font Liberation Sans:style=Bold:size=8}${color1}${cpu cpu8}%${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep 'Core 3' | awk '{print $3}' | sed 's/+//' | sed 's/.0.*//'}°C${color}${font}  ${color2}${cpugraph cpu8 8,50 C22F2F A40000}${color}
+# |--MEM
+${voffset 2}${color0}${font ConkyColors:size=15}g${font}${color}${goto 32}${voffset -7}RAM: ${font Liberation Sans:style=Bold:size=8}${color1}$memperc%${color}${font}
+${offset 1}${color0}${membar 4,17}${color}${goto 32}F: ${font Liberation Sans:style=Bold:size=8}${color2}${memeasyfree}${color}${font} U: ${font Liberation Sans:style=Bold:size=8}${color2}${mem}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=16}e${font}${color}${voffset -10}${goto 32}CPU: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep "Package id 0:" | cut -c 17-20 }°C${color}${font}
+${voffset 0}${goto 32}VReg: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp1: | cut -c 16-19 }°C${color}${font}
+${voffset 0}${goto 32}Mobo: ${font Liberation Sans:style=Bold:size=8}${font} ${alignr}${font Liberation Sans:style=Bold:size=8}${color1}${execi 30 sensors | grep temp2: | cut -c 16-19 }°C${color}${font}
+##############
+# - NVIDIA - #
+##############
+${voffset 4}${font Liberation Sans:style=Bold:size=8}NVIDIA $stippled_hr${font}
+${color0}${voffset 2}${font ConkyColorsLogos:size=16}n${font}${color}
+${goto 32}${voffset -22}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-settings -q NvidiaDriverVersion -t | head -1}${font}${color}
+${goto 32}GPU Temp:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia temp}${font}°C${color}
+${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia gpufreq}${font}MHz${color}
+${goto 32}Mem Clock:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia memfreq}${font}MHz${color}
+${goto 32}Mem Usage:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${exec nvidia-smi --query-gpu=memory.used --format=csv,noheader} / ${exec nvidia-smi --query-gpu=memory.total --format=csv,noheader}MiB${font}${color}
+${goto 32}GPU Usage:${alignr}${font Liberation Sans:style=Bold:size=8}${color1} ${nvidia gpuutil}%${font}${color}
+${goto 32} ${color2}${execgraph "nvidia-smi '--format=csv,noheader,nounits' '--query-gpu=utilization.gpu'" }${color}
+##########
+# - HD - #
+##########
+${voffset 4}${font Liberation Sans:style=Bold:size=8}HD $stippled_hr${font}
+${voffset 1}${alignr}                   Used/Size    % Free
+${voffset 6}${color0}${font ConkyColors:size=18}h${font}${color} ${voffset -13}Root:${alignr}$color ${color1}${fs_used /}/${fs_size /} ${color1}${fs_free_perc /}%${color}
+${voffset -2}${goto 32}Temp:${alignr}$color ${color1}${execi 30 nc localhost 7634 | cut -c 56-57}°C${color}
+${voffset 1}${fs_bar 12,175 /}
+${voffset 10}${color0}${font ConkyColors:size=18}h${font}${color} ${voffset -13}Home:${alignr}$color ${color1}${fs_used /home}/${fs_size /home} ${fs_free_perc /home}%${color}
+${voffset -2}${goto 32}Temp:${alignr}$color ${color1}${execi 30 nc localhost 7634 | cut -c 95-96}°C${color}
+${voffset 1}${fs_bar 12,175 /home}
+###############
+# - NETWORK - #
+###############
+${voffset 20}${font Liberation Sans:style=Bold:size=8}NETWORK $stippled_hr${font}
+# |--WLAN0
+${if_up wlan0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed wlan0}${color}${font} ${alignr}${color2}${upspeedgraph wlan0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup wlan0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed wlan0}${color}${font} ${alignr}${color2}${downspeedgraph wlan0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown wlan0}${color}${font}
+${color0}${font ConkyColors:size=15}j${font}${color}${voffset -6}${goto 32}Signal: ${font Liberation Sans:style=Bold:size=8}${color1}${wireless_link_qual_perc wlan0}%${color}${font} ${alignr}${color2}${wireless_link_bar 8,60 wlan0}${color}
+${voffset 2}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr wlan0}${color}${voffset -1}{goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+# |--ETH0
+${else}${if_up eth0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed eth0}${color}${font} ${alignr}${color2}${upspeedgraph eth0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup eth0}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed eth0}${color}${font} ${alignr}${color2}${downspeedgraph eth0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown eth0}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr eth0}${color}
+${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+# |--ENP4S0
+${else}${if_up enp4s0}
+${voffset -12}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed enp4s0}${color}${font} ${alignr}${color2}${upspeedgraph enp4s0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup enp4s0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed enp4s0}${color}${font} ${alignr}${color2}${downspeedgraph enp4s0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown enp4s0}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr enp4s0}${color}
+${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+# |--PPP0
+${else}${if_up ppp0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed ppp0}${color}${font} ${alignr}${color2}${upspeedgraph ppp0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup ppp0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed ppp0}${color}${font} ${alignr}${color2}${downspeedgraph ppp0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown ppp0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr ppp0}${color}
+${else}${voffset 4}${color0}${font ConkyColors:size=15}q${font}${color}${voffset -6}${goto 32}Network Unavailable${voffset 14}${endif}${endif}${endif}${endif}
+]];
