@@ -122,13 +122,13 @@ ${voffset 4}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voff
 ${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown eth0}${color}${font}
 ${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr eth0}${color}
 ${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
-# |--ENP4S0
-${else}${if_up enp4s0}
-${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed enp4s0}${color}${font} ${alignr}${color2}${upspeedgraph enp4s0 8,60 C22F2F A40000}${color}
-${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup enp4s0}${color}${font}
-${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed enp4s0}${color}${font} ${alignr}${color2}${downspeedgraph enp4s0 8,60 C22F2F A40000}${color}
-${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown enp4s0}${color}${font}
-${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr enp4s0}${color}
+# |--bridge0
+${else}${if_up bridge0}
+${voffset -5}${color0}${font ConkyColors:size=15}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=8}${color1}${upspeed bridge0}${color}${font} ${alignr}${color2}${upspeedgraph bridge0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup bridge0}${color}${font}
+${voffset 2}${color0}${font ConkyColors:size=15}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=8}${color1}${downspeed bridge0}${color}${font} ${alignr}${color2}${downspeedgraph bridge0 8,60 C22F2F A40000}${color}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totaldown bridge0}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=15}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr bridge0}${color}
 ${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
 # |--PPP0
 ${else}${if_up ppp0}

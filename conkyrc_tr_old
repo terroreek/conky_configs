@@ -133,8 +133,8 @@ ${goto 32}${color}EFI:${alignc}$color ${font Liberation Sans:style=Bold:size=10}
 ${goto 32}${color2}${fs_bar 25,400 /boot/efi}${color}
 ${goto 32}${color}Home:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home}/${fs_size /home} ${alignr}${fs_free_perc /home}%${font}${color}
 ${goto 32}${color2}${fs_bar 25,400 /home}${color}
-${goto 32}${color}Media:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home/terroreek/Media}/${fs_size /home/terroreek/Media} ${alignr}${fs_free_perc /home/terroreek/Media}%${font}${color}
-${goto 32}${color2}${fs_bar 25,400 /home/terroreek/Media}${color}
+${goto 32}${color}Games:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home/terroreek/Games}/${fs_size /home/terroreek/Games} ${alignr}${fs_free_perc /home/terroreek/Games}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /home/terroreek/Games}${color}
 ###############
 # - NETWORK - #
 ###############
