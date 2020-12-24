@@ -104,6 +104,7 @@ ${goto 32}F: ${font Liberation Sans:style=Bold:size=10}${color2}${memeasyfree}${
 ${offset 32}${color0}${memgraph 25,400 C22F2F A40000}${color}
 ${voffset 4}${color0}${font ConkyColors:size=16}c${font}${color}${voffset -10}${goto 32}CPU CCX1: ${font Liberation Sans:style=Bold:size=10}${font}${alignr}${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors | grep 'Tctl' | awk '{print $2}' | sed 's/+//' | sed -n 1p}${color}${font}
 ${voffset 0}${goto 32}CPU CCX2: ${font Liberation Sans:style=Bold:size=10}${font} ${alignr}${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors | grep 'Tctl' | awk '{print $2}' | sed 's/+//' | sed -n 2p}${color}${font}
+
 ##############
 # - NVIDIA - #
 ##############
