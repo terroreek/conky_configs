@@ -1,0 +1,177 @@
+conky.config = {
+--#####################
+-- - Conky settings - #
+--#####################
+	update_interval = 1,
+	total_run_times = 0,
+	net_avg_samples = 1,
+	cpu_avg_samples = 1,
+	if_up_strictness = 'link',
+
+	imlib_cache_size = 0,
+	double_buffer = true,
+	no_buffers = true,
+
+	format_human_readable = true,
+
+--####################
+-- - Text settings - #
+--####################
+	use_xft = true,
+	font = 'Liberation Sans:size=10',
+	override_utf8_locale = true,
+	text_buffer_size = 2048,
+
+--############################
+-- - Window specifications - #
+--############################
+	own_window_class = 'Conky',
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 200,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	alignment = 'top_right',
+	gap_x = 25,
+	gap_y = 50,
+	minimum_width = 450, minimum_height = 1200,
+	maximum_width = 450,
+
+	default_bar_width = 60, default_bar_height = 8,
+
+--########################
+-- - Graphics settings - #
+--########################
+	draw_shades = false,
+
+	default_color = '#cccccc',
+
+	color0 = 'white',
+	color1 = '#C22F2F',
+	color2 = 'white',
+	color3 = '#A40000',
+
+-- ########################
+-- - Load Lua           - #
+-- ########################
+
+	lua_load =  '~/.conky/draw_bg.lua',
+	lua_draw_hook_pre = 'draw_bg',
+
+};
+
+conky.text = [[
+
+${font Liberation Sans:style=Bold:size=12}SYSTEM $stippled_hr${font}
+##############
+# - SYSTEM - #
+##############
+${color0}${voffset 5}${offset 6}${font ConkyColorsLogos:size=11}d${font}${color}${voffset -18}
+${color0}${voffset -2}${font ConkyColors:size=20}b${font}${color}
+${goto 32}${voffset -30}Kernel: ${alignr}${color2}${kernel}${color}
+${goto 32}Uptime: ${alignr}${color2}${uptime}${color}
+# |--CPU
+${voffset 8}${color0}${font ConkyColors:size=20}e${font}${color}${voffset -16}${goto 32}CPU01: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu1}%${goto 120}${freq_g}GHz ${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd1' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}${color2}${alignr}${cpugraph cpu1 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU02: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu2}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd1' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font} ${color2}${alignr}${cpugraph cpu2 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU03: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu3}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd1' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu3 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU04: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu4}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd1' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu4 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU05: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu5}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd1' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu5 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU06: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu6}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd1' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu6 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU07: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu7}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd3' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu7 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU08: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu8}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd3' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu8 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU09: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu9}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd3' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu9 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU10: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu10}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd3' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu10 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU11: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu11}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd3' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu11 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU12: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu12}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd3' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu12 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU13: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu13}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd5' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu13 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU14: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu14}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd5' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu14 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU15: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu15}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd5' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu15 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU16: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu16}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd5' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu16 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU17: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu17}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd5' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu17 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU18: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu18}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd5' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu18 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU19: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu19}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd7' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu19 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU20: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu20}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd7' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu20 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU21: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu21}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd7' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu21 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU22: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu22}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd7' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu22 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU23: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu23}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd7' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu23 15,200 C22F2F A40000}${color}
+${voffset 4}${goto 32}CPU24: ${font Liberation Sans:style=Bold:size=10}${color1}${cpu cpu24}%${goto 120}${freq_g}GHz${font}${font Liberation Sans:style=Bold:size=10}${color1}${goto 185} ${execi 30 sensors | grep 'Tccd7' | awk '{print $2}' | sed 's/+//' | sed -n 1p}  ${color}${font}  ${color2}${alignr}${cpugraph cpu24 15,200 C22F2F A40000}${color}
+${offset 32}${color2}${voffset 8}${cpugraph cpu0 25,400 C22F2F A40000}${color}
+# |--MEM
+${voffset 2}${color0}${font ConkyColors:size=20}g${font}${color}${goto 32}${voffset -11}RAM: ${font Liberation Sans:style=Bold:size=10}${color1}$memperc%${color}${font}
+${goto 32}F: ${font Liberation Sans:style=Bold:size=10}${color2}${memeasyfree}${color}${font} U: ${font Liberation Sans:style=Bold:size=10}${color2}${mem}${color}${font}
+${offset 32}${color0}${memgraph 25,400 C22F2F A40000}${color}
+${voffset 4}${color0}${font ConkyColorsLogos:size=20}r${font}${color}${voffset -17}${goto 32}CPU Ctl: ${font Liberation Sans:style=Bold:size=10}${font}${alignr}${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors | grep 'Tctl' | awk '{print $2}' | sed 's/+//' | sed -n 1p}${color}${font}
+${goto 32}CPU Die: ${font Liberation Sans:style=Bold:size=10}${font}${alignr}${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors | grep 'Tctl' | awk '{print $2}' | sed 's/+//' | sed -n 1p}${color}${font}
+${voffset 4}${color0}${font ConkyColors:size=20}8${font}${color}${voffset -10}${goto 32}Coolant: ${font Liberation Sans:style=Bold:size=10}${font}${alignr}${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors | grep 'temp2' | awk '{print $2}' | sed 's/+//' | sed -n 1p}${color}${font}
+
+##############
+# - NVIDIA - #
+##############
+${voffset 4}${font Liberation Sans:style=Bold:size=12}NVIDIA $stippled_hr${font}
+${color0}${voffset 2}${font ConkyColorsLogos:size=20}n${font}${color}
+${goto 32}${voffset -30}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${exec nvidia-settings -q NvidiaDriverVersion -t | head -1}${font}${color}
+${goto 32}GPU Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${nvidia temp}°C${font}${color}
+${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${nvidia gpufreq}MHz${font}${color}
+${goto 32}Mem Clock:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${nvidia memfreq}MHz${font}${color}
+${goto 32}Mem Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${exec nvidia-smi --query-gpu=memory.used --format=csv,noheader} / ${exec nvidia-smi --query-gpu=memory.total --format=csv,noheader}${font}${color}
+${goto 32}GPU Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${nvidia gpuutil}%${font}${color}
+${goto 32}${color2}${execgraph "nvidia-smi '--format=csv,noheader,nounits' '--query-gpu=utilization.gpu'" 25,400 C22F2F A40000}${color}
+##########
+# - HD - #
+##########
+${voffset 4}${font Liberation Sans:style=Bold:size=12}HD $stippled_hr${font}
+${voffset 8}${color0}${font ConkyColors:size=20}h${font}${color} ${voffset -15}${goto 32}Samsung 970 Pro 512GB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sudo /usr/sbin/nvme smart-log /dev/nvme0 | grep "temperature" | cut -c 18-19}°C${font}${color}
+${goto 32}Samsung 860 Evo 1TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${hddtemp /dev/sda}°C${font}${color}
+${goto 32}Samsung 850 Evo 1TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${hddtemp /dev/sdb}°C${font}${color}
+
+${alignc}Used/Size${alignr}% Free
+${goto 32}Root:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /}/${fs_size /} ${alignr}${color1}${fs_free_perc /}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /}${color}
+${goto 32}${color}Boot:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /boot}/${fs_size /boot} ${alignr}${fs_free_perc /boot}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /boot}${color}
+${goto 32}${color}EFI:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /boot/efi}/${fs_size /boot/efi} ${alignr}${fs_free_perc /boot/efi}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /boot/efi}${color}
+${goto 32}${color}Home:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home}/${fs_size /home} ${alignr}${fs_free_perc /home}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /home}${color}
+${goto 32}${color}Media:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home/terroreek/Media}/${fs_size /home/terroreek/Media} ${alignr}${fs_free_perc /home/terroreek/Media}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /home/terroreek/Media}${color}
+###############
+# - NETWORK - #
+###############
+${voffset 20}${font Liberation Sans:style=Bold:size=12}NETWORK $stippled_hr${font}
+# |--WLP3S0
+${if_up wlp3s0}
+${voffset -5}${color0}${font ConkyColors:size=17}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=10}${color1}${upspeed wlp3s0}${color}${font}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=8}${color2}${totalup wlp3s0}${color}${font}
+${goto 32}${color2}${upspeedgraph wlp3s0 25,400 C22F2F A40000}${color}
+${voffset 2}${color0}${font ConkyColors:size=17}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=10}${color1}${downspeed wlp3s0}${color}${font}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=10}${color2}${totaldown wlp3s0}${color}${font}
+${goto 32}${color2}${downspeedgraph wlp3s0 25,400 C22F2F A40000}${color}
+${color0}${font ConkyColors:size=15}j${font}${color}${voffset -6}${goto 32}Signal: ${font Liberation Sans:style=Bold:size=10}${color1}${wireless_link_qual_perc wlp3s0}%${color}${font}
+${goto 32}${color2}${wireless_link_bar 25,400 wlp3s0}${color}
+${voffset 2}${color0}${font ConkyColors:size=17}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr wlp3s0}${color}${voffset -1}
+${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+# |--Bridge0
+${else}${if_up bridge0}
+${voffset -5}${color0}${font ConkyColors:size=17}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=10}${color1}${upspeed bridge0}${color}${font}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=10}${color2}${totalup bridge0}${color}${font}
+${goto 32}${color2}${upspeedgraph bridge0 25,400 C22F2F A40000}${color}
+${voffset 2}${color0}${font ConkyColors:size=17}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=10}${color1}${downspeed bridge0}${color}${font}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=10}${color2}${totaldown bridge0}${color}${font}
+${goto 32}${color2}${downspeedgraph bridge0 25,400 C22F2F A40000}${color}
+${voffset 2}${color0}${font ConkyColors:size=17}B${font}${color}${goto 32}${voffset -10}Local IP: ${alignr}${color2}${addr bridge0}${color}
+${voffset 0}${goto 32}External IP: ${alignr}${color2}${exec wget -O - -q icanhazip.com}${color}
+# |--TUN0
+${else}${if_up tun0}
+${voffset -5}${color0}${font ConkyColors:size=17}s${font}${color}${goto 32}${voffset -12}Up: ${font Liberation Sans:style=Bold:size=10}${color1}${upspeed tun0}${color}${font}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=10}${color2}${totalup tun0}${color}${font}
+${goto 32}${color2}${upspeedgraph tun0 25,400 C22F2F A40000}${color}
+${voffset 2}${color0}${font ConkyColors:size=17}t${font}${color}${goto 32}${voffset -12}Down: ${font Liberation Sans:style=Bold:size=10}${color1}${downspeed tun0}${color}${font}
+${goto 32}Total: ${font Liberation Sans:style=Bold:size=10}${color2}${totaldown tun0}${color}${font}
+${goto 32}${color2}${downspeedgraph tun0 25,400 C22F2F A40000}${color}
+${voffset 2}${color0}${font ConkyColors:size=17}B${font}${color}${goto 32}${voffset -6}Local IP: ${alignr}${color2}${addr tun0}${color}
+${else}${voffset 4}${color0}${font ConkyColors:size=17}q${font}${color}${voffset -6}${goto 32}Network Unavailable${voffset 14}
+${endif}${endif}${endif}
+]];

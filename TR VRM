@@ -1,0 +1,1 @@
+${voffset 0}${goto 32}CPU VRM: ${font Liberation Sans:style=Bold:size=10}${font} ${alignr}${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors | grep 'CPU VRM Temperature' | awk '{print $4}' | sed 's/+//'}${color}${font}
