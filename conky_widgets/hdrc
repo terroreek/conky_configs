@@ -1,0 +1,88 @@
+conky.config = {
+--#####################
+-- - Conky settings - #
+--#####################
+	update_interval = 1,
+	total_run_times = 0,
+	net_avg_samples = 1,
+	cpu_avg_samples = 1,
+	if_up_strictness = 'link',
+
+	imlib_cache_size = 0,
+	double_buffer = true,
+	no_buffers = true,
+
+	format_human_readable = true,
+
+--####################
+-- - Text settings - #
+--####################
+	use_xft = true,
+	font = 'Liberation Sans:size=10',
+	override_utf8_locale = true,
+	text_buffer_size = 2048,
+
+--############################
+-- - Window specifications - #
+--############################
+	own_window_class = 'Conky',
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 200,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	alignment = 'top_right',
+	gap_x = 25,
+	gap_y = 1085,
+	minimum_width = 450, minimum_height = 480,
+	maximum_width = 450,
+
+	default_bar_width = 60, default_bar_height = 8,
+
+--########################
+-- - Graphics settings - #
+--########################
+	draw_shades = false,
+
+	default_color = '#cccccc',
+
+	color0 = 'white',
+	color1 = '#C22F2F',
+	color2 = 'white',
+	color3 = '#A40000',
+
+-- ########################
+-- - Load Lua           - #
+-- ########################
+
+	lua_load =  '~/.conky/draw_bg.lua',
+	lua_draw_hook_pre = 'draw_bg',
+
+};
+
+conky.text = [[
+##########
+# - HD - #
+##########
+${voffset 10}${font Liberation Sans:style=Bold:size=12}HD $stippled_hr${font}
+${voffset 8}${color0}${font ConkyColors:size=20}h${font}${color} ${voffset -15}${goto 32}Samsung 970 Pro 512GB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sudo /usr/sbin/nvme smart-log /dev/nvme0 | grep "temperature" | cut -c 18-19}°C${font}${color}
+${goto 32}Samsung 860 Evo 1TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${hddtemp /dev/sda}°C${font}${color}
+${goto 32}Samsung 850 Evo 1TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${hddtemp /dev/sdb}°C${font}${color}
+${goto 32}Samsung 870 Qvo 2TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${hddtemp /dev/sdc}°C${font}${color}
+
+${alignc}Used/Size${alignr}% Free
+${goto 32}Root:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /}/${fs_size /} ${alignr}${color1}${fs_free_perc /}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /}${color}
+${goto 32}${color}Boot:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /boot}/${fs_size /boot} ${alignr}${fs_free_perc /boot}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /boot}${color}
+${goto 32}${color}EFI:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /boot/efi}/${fs_size /boot/efi} ${alignr}${fs_free_perc /boot/efi}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /boot/efi}${color}
+${goto 32}${color}Home:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home}/${fs_size /home} ${alignr}${fs_free_perc /home}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /home}${color}
+${goto 32}${color}Media:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home/terroreek/Media}/${fs_size /home/terroreek/Media} ${alignr}${fs_free_perc /home/terroreek/Media}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /home/terroreek/Media}${color}
+${goto 32}${color}VMs:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /home/terroreek/Media/VMs}/${fs_size /home/terroreek/Media/VMs} ${alignr}${fs_free_perc /home/terroreek/Media/VMs}%${font}${color}
+${goto 32}${color2}${fs_bar 25,400 /home/terroreek/Media/VMs}${color}
+]];

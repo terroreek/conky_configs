@@ -1,0 +1,77 @@
+conky.config = {
+--#####################
+-- - Conky settings - #
+--#####################
+	update_interval = 1,
+	total_run_times = 0,
+	net_avg_samples = 1,
+	cpu_avg_samples = 1,
+	if_up_strictness = 'link',
+
+	imlib_cache_size = 0,
+	double_buffer = true,
+	no_buffers = true,
+
+	format_human_readable = true,
+
+--####################
+-- - Text settings - #
+--####################
+	use_xft = true,
+	font = 'Liberation Sans:size=10',
+	override_utf8_locale = true,
+	text_buffer_size = 2048,
+
+--############################
+-- - Window specifications - #
+--############################
+	own_window_class = 'Conky',
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 200,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	alignment = 'top_right',
+	gap_x = 25,
+	gap_y = 790,
+	minimum_width = 450, minimum_height = 50,
+	maximum_width = 450,
+
+	default_bar_width = 60, default_bar_height = 8,
+
+--########################
+-- - Graphics settings - #
+--########################
+	draw_shades = false,
+
+	default_color = '#cccccc',
+
+	color0 = 'white',
+	color1 = '#C22F2F',
+	color2 = 'white',
+	color3 = '#A40000',
+
+-- ########################
+-- - Load Lua           - #
+-- ########################
+
+	lua_load =  '~/.conky/draw_bg.lua',
+	lua_draw_hook_pre = 'draw_bg',
+
+};
+
+conky.text = [[
+${voffset 12}${font Liberation Sans:style=Bold:size=12}GPU $stippled_hr${font}
+${color0}${voffset 4}${font ConkyColorsLogos:size=20}r${font}${color}${goto 32}${voffset -16}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 6000 glxinfo | grep "OpenGL version" |cut -c52-70}${font}${color}
+${goto 32}Edge Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 sensors | grep "edge" | sed -n 2p | awk '{print $2}' | sed 's/+//'}${font}${color}
+${goto 32}Junction Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 sensors|grep "junction" | awk '{print $2}' | sed 's/+//'}${font}${color}
+${goto 32}Mem Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 sensors | grep "mem" | awk '{print $2}' | sed 's/+//'}${font}${color}
+#${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_sclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
+#${goto 32}Mem Clock:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_mclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
+${goto 32}GPU Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/gpu_busy_percent}% @ ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_sclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
+${goto 32}${color2}${execgraph "cat /sys/class/drm/card0/device/gpu_busy_percent" 25,400 C22F2F A40000}${color}
+${goto 32}Mem Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/mem_busy_percent}% @ ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_mclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
+${goto 32}${color2}${execgraph "cat /sys/class/drm/card0/device/mem_busy_percent" 25,400 C22F2F A40000}${color}
+]];
