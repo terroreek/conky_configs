@@ -64,14 +64,13 @@ conky.config = {
 
 conky.text = [[
 ${voffset 12}${font Liberation Sans:style=Bold:size=12}GPU $stippled_hr${font}
-${color0}${voffset 4}${font ConkyColorsLogos:size=20}r${font}${color}${goto 32}${voffset -16}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 6000 glxinfo | grep "OpenGL version" |cut -c52-70}${font}${color}
+${color0}${voffset 4}${font ConkyColorsLogos:size=20}r${font}${color}${goto 32}${voffset -16}7900XTX:${alignr}${font Liberation Sans:style=Bold:size=10}${color1}GPU: ${execi 30 cat /sys/class/drm/card0/device/pp_dpm_sclk|sed -n 3p | cut -c 4-}${tab}Mem: ${execi 30 cat /sys/class/drm/card0/device/pp_dpm_mclk| sed -n 4p | cut -c 4-}z${font}${color}
+${goto 32}Driver Version:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 6000 glxinfo | grep "OpenGL version" |cut -c52-70}${font}${color}
 ${goto 32}Edge Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 sensors | grep "edge" | sed -n 2p | awk '{print $2}' | sed 's/+//'}${font}${color}
 ${goto 32}Junction Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 sensors|grep "junction" | awk '{print $2}' | sed 's/+//'}${font}${color}
 ${goto 32}Mem Temp:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 sensors | grep "mem" | awk '{print $2}' | sed 's/+//'}${font}${color}
-#${goto 32}GPU Clock:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_sclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
-#${goto 32}Mem Clock:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_mclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
-${goto 32}GPU Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/gpu_busy_percent}% @ ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_sclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
+${goto 32}GPU Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/gpu_busy_percent}%${font}${color}
 ${goto 32}${color2}${execgraph "cat /sys/class/drm/card0/device/gpu_busy_percent" 25,400 C22F2F A40000}${color}
-${goto 32}Mem Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/mem_busy_percent}% @ ${execi 2 cat /sys/class/drm/card0/device/pp_dpm_mclk|grep "*"|cut -c 3-|sed 's/..$//'}${font}${color}
+${goto 32}Mem Usage:${alignr}${font Liberation Sans:style=Bold:size=10}${color1} ${execi 2 cat /sys/class/drm/card0/device/mem_busy_percent}%${font}${color}
 ${goto 32}${color2}${execgraph "cat /sys/class/drm/card0/device/mem_busy_percent" 25,400 C22F2F A40000}${color}
 ]];
