@@ -67,9 +67,9 @@ conky.text = [[
 # - HD - #
 ##########
 ${voffset 10}${font Liberation Sans:style=Bold:size=12}HD $stippled_hr${font}
-${voffset 8}${color0}${font ConkyColors:size=20}h${font}${color} ${voffset -15}${goto 32}Samsung 990 Pro 1TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 smartctl -A /dev/nvme0 | grep "Temperature" | sed -n 1p | cut -c 37-38}°C${font}${color}
-${goto 32}Samsung 990 Pro 2TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 smartctl -A /dev/nvme1 | grep "Temperature" | sed -n 1p | cut -c 37-38}°C${font}${color}
-${goto 32}Samsung 870 Qvo 2TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 smartctl -A /dev/sdb | grep "Temperature" | cut -c 88-89}°C${font}${color}
+${voffset 8}${color0}${font ConkyColors:size=20}h${font}${color} ${voffset -15}${goto 32}Samsung 990 Pro 1TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors nvme-pci-0400 | grep "Composite" | cut -c 16-19}°C${font}${color}
+${goto 32}Samsung 990 Pro 2TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors nvme-pci-6d00 | grep "Composite" | cut -c 16-19}°C${font}${color}
+${goto 32}Samsung 870 Qvo 2TB:$alignr${font Liberation Sans:style=Bold:size=10}${color1}${execi 30 sensors drivetemp-scsi-9-0 | grep "temp1" | cut -c 16-19}°C${font}${color}
 
 ${alignc}Used/Size${alignr}% Free
 ${goto 32}Root:${alignc}$color ${font Liberation Sans:style=Bold:size=10}${color1}${fs_used /}/${fs_size /} ${alignr}${color1}${fs_free_perc /}%${font}${color}
